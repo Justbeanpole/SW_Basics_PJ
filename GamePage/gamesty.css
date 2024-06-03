@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap');
+
+* {
+    user-select: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#title {
+    height: 10%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+button {
+    font-family: Jaro;
+}
+
+#title>button {
+    position: absolute;
+    left: 15px;
+    background-color: rgb(5, 45, 35);
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    font-family: Jaro;
+    font-size: 30px;
+    border: 2px solid white;
+    border-radius: 50px;
+    color: white;
+}
+
+#gametitle {
+    font-family: Jaro;
+    font-size: 60px;
+    color: white;
+}
+
+#container {
+    height: 100vh;
+    background-color: rgb(5, 45, 35);
+    display: flex;
+    flex-direction: column;
+}
+
+#top {
+    height: 30%;
+    margin-top: 50px;
+}
+
+#dtext {
+    position: absolute;
+    top: 110px;
+    font-family: Jaro;
+    color: white;
+    font-size: 20px;
+}
+
+#bottom {
+    display: flex;
+    flex-direction: column;
+    height: 35%;
+    justify-content: space-between;
+}
+
+.cardSection {
+    display: flex;
+    height: 210px;
+    justify-content: center;
+    align-items: center;
+}
+
+.score {
+    display: none;
+    position: relative;
+    text-align: center;
+    font-family: Jaro;
+    color: white;
+    font-size: 20px;
+    left: 15px;
+}
+
+.player {
+    margin-top: 50px;
+}
+
+#ptext {
+    position: absolute;
+    font-family: Jaro;
+    font-size: 20px;
+    color: white;
+    bottom: 255px;
+}
+
+.Card {
+    display: inline-grid;
+    width: 146px;
+    height: 200px;
+    margin-left: 10px;
+    transform-style: preserve-3d;
+    color: red;
+    font-size: 50px;
+    
+}
+.rotateCard{
+    animation-name: cardRotate;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
+@keyframes cardRotate {
+    100%{transform: rotateY(180deg)}
+    50%{transform: rotateY(90deg)}
+    0%{transform: rotateY(0deg)}
+  }
+.Card>* {
+    grid-area: 1/1/1/1;
+    backface-visibility: hidden;
+}
+
+.front {
+    background-image: url(https://deckofcardsapi.com/static/img/back.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.playerback, .dealerback{
+    transform: rotateY(180deg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#playerMoney {
+    display: flex;
+    position: absolute;
+    right: 100px;
+    align-items: center;
+    font-size: 40px;
+    font-family: Jaro;
+    color: white;
+    height: 120px;
+}
+
+#money {
+    margin-left: 5px;
+}
+
+#charge {
+    display: none;
+    align-self: flex-start;
+    position: absolute;
+    right: 10px;
+    font-size: 30px;
+    animation-name: fade-inNout;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fade-inNout {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+#chipSec {
+    width: 131px;
+    height: 180px;
+    border: 5px dashed;
+    border-radius: 20px;
+    border-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 300px;
+}
+
+.chip {
+    height: 40px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Do Hyeon';
+}
+
+#xSpace {
+    margin: 10px;
+}
+
+.chipImg {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 10px;
+    border: 3px dashed white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-weight: 1000;
+}
+
+#allIn {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    font-size: 20px;
+    border: 5px dashed white;
+    background-color: #ffcf40;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-family: Jaro;
+}
+
+#chipRed {
+    background-color: #f44336;
+}
+
+#chipBlue {
+    background-color: #2986cc;
+}
+
+#chipGray {
+    background-color: gray;
+}
+
+#chipTotal {
+    position: absolute;
+    bottom: 10px;
+    font-family: Jaro;
+    color: white;
+}
+
+.playerAct {
+    height: 25%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: radial-gradient(110% 100% at top, transparent 50%, #69817b);
+}
+
+#betAct>button {
+    height: 50%;
+    flex-grow: 1;
+    cursor: pointer;
+    font-size: 60px;
+    border: 0;
+    background: none;
+    color: white;
+}
+
+#chipMenu {
+    flex-grow: 2;
+    height: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+}
+
+.varchip {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    font-size: 20px;
+    border: 5px dashed white;
+    cursor: pointer;
+}
+
+.varchip:hover {
+    transition: 0.5s;
+    box-shadow: 0 5px 5px 0px white;
+    position: relative;
+    bottom: 3px;
+}
+
+#one {
+    background-color: #f44336;
+}
+
+#three {
+    background-color: #2986cc;
+}
+
+#five {
+    background-color: gray;
+}
+
+#all {
+    background-color: #ffcf40;
+}
+
+#start:hover,
+#end:hover {
+    transition: 1s;
+    color: lightseagreen;
+}
+
+#gameAct {
+    display: none;
+}
+
+.gameBtn {
+    width: 49.9%;
+    height: 50%;
+    cursor: pointer;
+    font-family: Jaro;
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: none;
+    border: none;
+}
+
+.gameBtn:hover {
+    transition: 1s;
+    color: lightseagreen;
+}
+
+#line {
+    width: 0.2%;
+    height: 50%;
+    background-color: rgb(5, 45, 35);
+    opacity: 20%;
+}
+
+.winConditionScreen {
+    position: absolute;
+    font-family: Jaro;
+    font-size: 70px;
+    top: 360px;
+    left: 895px;
+}
+
+#victory {
+    display: none;
+    color: #ffcf40;
+}
+
+#defeat {
+    left: 900px;
+    display: none;
+    color: #f44336;
+}
+
+#tie {
+    top: 360px;
+    left: 883px;
+    display: none;
+    color: white;
+}
+
+#bustMsg {
+    display: none;
+    z-index: 3;
+    color: #f44336;
+    font-family: Jaro;
+    position: absolute;
+    font-size: 80px;
+    top: 190px;
+    /* top: 510px; */
+    left: 860px;
+    transform: rotate(-10deg);
+    animation-name: stamp;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
+}
+
+@keyframes stamp {
+    0% {
+        transform: scale(1);
+        opacity: 0;
+    }
+
+    95% {
+        transform: scale(5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

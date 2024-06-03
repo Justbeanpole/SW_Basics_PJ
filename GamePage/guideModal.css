@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&display=swap');
+.modal {
+    display: none;
+    /* 초기에는 보이지 않도록 설정 */
+    position: fixed;
+    /* 고정 위치 */
+    z-index: 1;
+    /* 화면 위에 표시 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* 전체 너비 */
+    height: 100vh;
+    /* 전체 높이 */
+    overflow: auto;
+    /* 스크롤 가능 */
+    background-color: rgb(0, 0, 0);
+    /* 백그라운드 색상 */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* 투명 백그라운드 색상 */
+    font-family: 'Do Hyeon';
+    color: white;
+    font-size: 25px;
+}
+.modal>div{
+    position: absolute;
+}
+#moneyGuide{
+    right: 100px;
+    bottom: 410px;
+}
+#chipGuide{
+    left: 750px;
+    bottom: 120px;
+}
+#cardGuide{
+    left: 43.5%;
+    top: 40%;
+}
+#betGuide{
+    left: 260px;
+    bottom: 250px;
+}
+#resetGuide{
+    bottom: 110px;
+    left: 50px;
+}
+#playGuide{
+    right: 50px;
+    bottom: 110px;
+}
+#hitGuide{
+    bottom: 110px;
+    left: 370px;
+    opacity: 0%;
+}
+#standGuide{
+    bottom: 110px;
+    right: 300px;
+    opacity: 0%;
+}
+#off{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    position: absolute;
+    right: 90px;
+    top: 20px;
+    font-family: 'Do Hyeon';
+    font-size: 22px;
+    border: 2px solid white;
+    color: white;
+    background-color: rgb(253, 49, 49);
+    cursor: pointer;
+    box-shadow: 0 5px 0 0 white;
+}
+#off:hover{
+    transition: 0.3s;
+    box-shadow: 0 0 0 0;
+    top: 25px;
+}
+#off:active{
+    color: rgb(253, 49, 49);
+    background-color: white;
+}
+#offText{
+    top: 110px;
+    right: 10px;
+    font-size: 17px;
+}

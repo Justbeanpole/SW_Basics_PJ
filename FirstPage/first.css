@@ -1,0 +1,96 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap');
+* {
+    user-select: none;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+#container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: rgb(5, 45, 35);
+}
+#top{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+  font-family: Jaro;
+  font-size: 110px;
+  color: white;
+  letter-spacing: 3px;
+}
+#infotext{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Jaro;
+    color: white;
+    font-size: 20px;
+}
+#bottom{
+    display: flex;
+    flex-direction: column;
+}
+#selectornum{
+    display: flex;
+    justify-content: center;
+    height: 50px;
+}
+button{
+    background-color: rgb(5, 45, 35);
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    font-family: Jaro;
+    border: 0;
+    font-size: 20px;
+    border-radius: 50px;
+    color: white;
+    border: 1px solid white;
+    transition: all 0.2s ;
+    box-shadow: 0px 5px 0px 0px white;
+}
+button:hover{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    box-shadow: 0px 0px 0px 0px;
+}
+button:active{
+    background-color: white;
+    color: rgb(5, 45, 35);
+}
+#num{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    font-family: Jaro;
+    font-size: 35px;
+    width: 150px;
+    color: white;
+    margin-top: 7px;
+}
+#playbutton{
+    position: relative;
+    top: 60px;
+    width: 300px;
+    height: 100px;
+    text-decoration: none;
+    font-family: Jaro;
+    font-size: 40px;
+}
+#guide{
+    position: fixed;
+    bottom: 4%;
+    left: 2%;
+    font-size: 35px;
+    box-shadow: none;
+}
+#guide:hover{
+    margin: 0;
+}

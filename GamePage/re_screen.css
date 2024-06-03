@@ -1,0 +1,27 @@
+#reGameScreen{
+    display: none;
+    /* 초기에는 보이지 않도록 설정 */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    /* 고정 위치 */
+    z-index: 5;
+    /* 화면 위에 표시 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* 전체 너비 */
+    height: 100vh;
+    /* 전체 높이 */
+    overflow: auto;
+    /* 스크롤 가능 */
+    background-color: rgb(0, 0, 0);
+    /* 백그라운드 색상 */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* 투명 백그라운드 색상 */
+    font-family: 'Do Hyeon';
+    color: white;
+    font-size: 60px;
+    text-align: center;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game</title>
+  <link rel="stylesheet" href="gamesty.css">
+  <link rel="stylesheet" href="guideModal.css">
+  <link rel="stylesheet" href="re_screen.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="title">
+      <button id="guide">?</button>
+      <div id="gametitle">BlackJack</div>
+    </div>
+    <div id="top">
+      <div class="cardSection dealer">
+        <span class="score" id="dscore">00</span>
+        <span id="dtext">Dealer</span>
+      </div>
+    </div>
+    <div id="bottom">
+      <div class="cardSection player">
+        <div id="chipSec">
+          <div class="chip" id="chipOne">
+            <div class="chipImg" id="chipRed">100</div>
+            <span id="xSpace">X</span><span class="betCount">1</span>
+          </div>
+          <div class="chip" id="chipThree">
+            <div class="chipImg" id="chipBlue">300</div>
+            <span id="xSpace">X</span><span class="betCount">1</span>
+          </div>
+          <div class="chip" id="chipFive">
+            <div class="chipImg" id="chipGray">500</div>
+            <span id="xSpace">X</span><span class="betCount">1</span>
+          </div>
+          <div id="allIn">ALL IN</div>
+          <div id="chipTotal">0000</div>
+        </div>
+        <span id="ptext">Player</span>
+        <div id="playerMoney">
+          <span>Money : </span>
+          <span id="money">2000</span>
+          <span id="charge">+300</span>
+        </div>
+        <div class="score" id="pscore">00</div>
+      </div>
+    </div>
+    <!-- 게임 시작 전 플레이어 행동 선택지 betting -->
+    <div class="playerAct" id="betAct">
+      <button id="end">↻RESET</button>
+      <div id="chipMenu">
+        <button class="varchip" id="one">100</button>
+        <button class="varchip" id="three">300</button>
+        <button class="varchip" id="five">500</button>
+        <button class="varchip" id="all">ALL IN</button>
+      </div>
+      <button id="start">PLAY</button>
+    </div>
+    <!-- 게임 시작 후 플레이어 행동 선택지 -->
+    <div class="playerAct" id="gameAct">
+      <input type="button" value="HIT" disabled class="gameBtn" id="hit">
+      <div id="line"></div>
+      <input type="button" value="STAND" disabled class="gameBtn" id="stand">
+    </div>
+    <div class="winConditionScreen" id="victory">WIN</div>
+    <div class="winConditionScreen" id="tie">DRAW</div>
+    <div class="winConditionScreen" id="defeat">LOSE</div>
+    <div id="bustMsg">BUSTED</div>
+  </div>
+  <!-- 모달 -->
+  <div class="modal" id="beforeModal">
+    <div id="moneyGuide">소지금이 표시됩니다.</div>
+    <div id="chipGuide">칩에 적힌 금액만큼 배팅됩니다. 클릭해 선택해 주세요.</div>
+    <div id="cardGuide">카드가 표시되는 구역입니다.</div>
+    <div id="betGuide">배팅한 금액이 표시됩니다.</div>
+    <div id="resetGuide">RESET버튼을 누를 시 배팅된 금액을 초기화시킵니다.</div>
+    <div id="playGuide">PLAY버튼을 누를 시 게임을 시작합니다.</div>
+    <div id="hitGuide">카드 한 장 더 받습니다.</div>
+    <div id="standGuide">카드를 더 받지 않고 턴을 종료합니다.</div>
+    <button id="off">종료</button>
+    <div id="offText">종료를 원하시면 종료버튼을 눌러주세요.</div>
+  </div>
+  <div id="reGameScreen">
+    <div id="screenText">게임을 재시작합니다.</div>
+    <div id="countNum">5</div>
+  </div>
+  <script src="game.js"></script>
+  <script src="gameModal.js"></script>
+  <script src="blackjack.js"></script>
+</body>
+
+</html>

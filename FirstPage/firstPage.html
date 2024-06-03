@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Jack</title>
+    <link rel="stylesheet" href="first.css">
+    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="title.css">
+    <link rel="stylesheet" href="modal.css">
+</head>
+
+<body>
+    <div id="container">
+        <div id="top">
+            <h1 id="title">BlackJack</h1>
+        </div>
+        <div id="buttom">
+            <div id="infotext"><span>Seed Money</span></div>
+            <div id="selectornum">
+                <button class="updown" id="leftbutton">◀</button>
+                <div id="num">2000</div>
+                <button class="updown" id="rightbutton">▶</button>
+            </div>
+            <button id="playbutton">GAME PLAY</button>
+            <div class="menu">
+                <input type="checkbox" id="toggle" />
+                <label id="show-menu" for="toggle">
+                    <div class="btn">
+                        <i class="material-icons md-36 toggleBtn menuBtn">menu</i>
+                        <i class="material-icons md-36 toggleBtn closeBtn">close</i>
+                    </div>
+                    <div class="btn">
+                        <i class="material-icons md-36" id="share">share</i>
+                    </div>
+                    <div class="btn">
+                        <i class="material-icons md-36" id="openModalBtn">book</i>
+                    </div>
+                    <div class="btn">
+                        <i class="material-icons md-36" id="favorite" >favorite</i>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <!-- BOX -->
+        <div class="modal-content">
+            <!-- HEAD -->
+            <div id="modalHead">
+                <span id="modalTitle">기본 규칙</span>
+                <span class="material-icons md-36" id="close">close</span>
+            </div>
+            <!-- CONTENT -->
+            <div class="modal-body">
+                <button class="prevBtn">arrow_back_ios</button>
+                <!-- PAGE1 -->
+                <div class="modal-page" id="page1">
+                    <div class="gameExpl" id="basicGuide">
+                        ① 딜러와 플레이어 모두 먼저 2장씩 카드를 받습니다. <br>
+                        ② 자신의 카드의 합이 21에 가까워 지도록 카드를 추가(HIT)하거나 <br>
+                        &nbsp;&nbsp;&nbsp;스탠드(Stand)할 수 있습니다. <br>
+                        ③ 카드의 합이 21을 초과 시(버스트(Bust)), 게임에서 패배합니다. <br>
+                        ④ 플레이어는 21을 초과하지 않는 한 원하는만큼 카드를 추가 할 수있습니다.
+                    </div>
+                    <div class="smallTitle">배팅금</div>
+                    <div class="gameExpl" id="bettingGuide">
+                        초기 소지금은 2000 ~ 10000 입니다. <br>
+                        <strong id="winText">승리</strong> 시 배팅한 금액의 2배로 돌려받습니다. <br>
+                        <strong id="loseText">패배</strong> 시 배팅한 금액은 모두 사라집니다.
+                    </div>
+                    <div class="smallTitle">HIT? STAND?</div>
+                    <div class="gameExpl" id="hitstandText">HIT는 카드 한 장을 더 받습니다. <br>
+                        STAND는 카드를 받지 않고 멈춥니다.</div>
+                </div>
+                <!-- PAGE2 -->
+                <div class="modal-page" id="page2">
+                    <div id="cardVal">
+                        <div id="imgbox">
+                            <img src="https://deckofcardsapi.com/static/img/AH.png" alt="">
+                            <img src="https://deckofcardsapi.com/static/img/JH.png" alt="">
+                            <img src="https://deckofcardsapi.com/static/img/QH.png" alt="">
+                            <img src="https://deckofcardsapi.com/static/img/KH.png" alt="">
+                        </div>
+                        <div>
+                            Ace는 1 또는 11로 사용할 수 있다. J, Q, K는 모두 10으로 계산한다. <br>
+                            그 외 경우 카드에 적힌 숫자에 따른다.
+                        </div>
+                        <div id="imgbox">
+                            <img src="https://deckofcardsapi.com/static/img/AS.png" alt="">
+                            <img src="https://deckofcardsapi.com/static/img/KD.png" alt="">
+                        </div>
+                        <div>
+                            위 그림처럼 두 카드의 합이 21이 된 경우를 블랙잭이라고 한다. <br>
+                            블랙잭인 경우 무조건 승리한다. <br>
+                            단, 딜러도 블랙잭일 경우 무승부이며 배팅금은 다시 반환받는다.
+                        </div>
+                    </div>
+                    <div id="leftbox">
+                        <div class="smallTitle">
+                            배팅 방법
+                        </div>
+                        <div id="chipMenu">
+                            <button class="varchip one">100</button>
+                            <button class="varchip three">300</button>
+                            <button class="varchip five">500</button>
+                            <button class="varchip all">ALL IN</button>
+                        </div>
+                        <div class="gameExpl">
+                            원하는 칩 선택 후 PLAY를 눌러 게임을 시작한다. <br>
+                            만약 칩을 잘못 배팅한 경우 RESET을 눌러 회수 할 수 있다.
+                        </div>
+                        <div class="smallTitle">
+                            세부 사항
+                        </div>
+                        <div class="gameExpl">
+                            플레이어의 소지금이 20000 이상 되면 최종승리하게된다. <br>
+                            만약 당신의 소지금이 0 이하가 된다면 패배한다. <br>
+                            그 전에 종료를 원한다면 좌측 상단의 버튼을 이용해 종료합니다.
+                        </div>
+                    </div>
+                </div>
+                <button class="nextBtn">arrow_forward_ios</button>
+            </div>
+        </div>
+    </div>
+    <script src="firstscrip.js"></script>
+    <script src="modal.js"></script>
+</body>
+
+</html>

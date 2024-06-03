@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&display=swap');
+
+/* 모달 창 스타일 */
+.modal {
+    display: none;
+    /* 초기에는 보이지 않도록 설정 */
+    position: fixed;
+    /* 고정 위치 */
+    z-index: 1;
+    /* 화면 위에 표시 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* 전체 너비 */
+    height: 100%;
+    /* 전체 높이 */
+    overflow: auto;
+    /* 스크롤 가능 */
+    background-color: rgb(0, 0, 0);
+    /* 백그라운드 색상 */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* 투명 백그라운드 색상 */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    border-radius: 50px;
+    width: 60%;
+    height: 700px;
+}
+#modalHead{
+    display: flex;
+    justify-content: center;
+    height: 10%;
+    align-items: center;
+    flex-direction: column;
+}
+#modalTitle{
+    position: relative;
+    top: 23px;
+    font-size: 50px;
+    font-family: 'Do Hyeon';
+    color: rgb(5, 45, 35);
+}
+#close {
+    position: relative;
+    bottom: 35px;
+    right: 25px;
+    color: rgb(5, 45, 35);
+    font-size: 28px;
+    font-weight: bold;
+    align-self: flex-end;
+}
+
+#close:hover,
+#close:focus {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 90%;
+}
+
+.modal-page {
+    display: none;
+    flex: 1;
+    font-family: 'Do Hyeon';
+    font-size: 20px;
+}
+
+.modal-page.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    padding-left: 50px;
+}
+#page1{
+    font-size: 30px;
+}
+#page2{
+    flex-direction: row;
+    justify-content: space-around;
+}
+#basicGuide{
+    padding-top: 20px;
+}
+.smallTitle{
+    font-size: 35px;
+    height: 50px;
+    padding-top: 20px;
+}
+#bettingGuide{
+    padding-top: 5px;
+}
+#winText{
+    color: blue;
+}
+#loseText{
+    color: red;
+}
+#hitstandText{
+    font-size: 25px;
+}
+
+#imgbox>img{
+    height: 150px;
+}
+.prevBtn,
+.nextBtn {
+    background-color: #fefefe;
+    color: rgb(5, 45, 35);
+    border: none;
+    cursor: pointer;
+    font-size: 35px;
+    font-family: 'Material Icons';
+}
+.prevBtn{
+    padding-left: 15px;
+}
+
+.prevBtn:hover,
+.nextBtn:hover {
+    margin: 0;
+    box-shadow: none;
+}
+
+#chipMenu{
+    display: flex;
+    width: 100%;
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+}
+#chipMenu>button{
+    margin: 0;
+}
+.varchip{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    font-size: 20px;
+    border: 5px dashed white;
+    cursor: pointer;
+}
+.one{
+    background-color: #f44336;
+}
+.three{
+    background-color: #2986cc;
+}
+.five{
+    background-color: gray;
+}
+.all{
+    background-color: #ffcf40;
+}

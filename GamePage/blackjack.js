@@ -231,11 +231,14 @@ const stand = async () => {
     card[0].className += ' rotateCard';
     hitBtn.disabled = "true";
     stdBtn.disabled = "true";
+    sc[0].innerText = sum(dealerVal);
     while (sum(dealerVal) <= 16) {
+        await new Promise(resolve => setTimeout(resolve, 2000));
         await hit("dealer");
+        sc[0].innerText = sum(dealerVal);
     }
     let varWin;
-    sc[0].innerText = `${sum(dealerVal)}`;
+    sc[0].innerText = sum(dealerVal);
     if (sum(dealerVal) <= 21) {
         varWin = winD();
         matchResult(varWin);
@@ -354,7 +357,6 @@ const reGameScreen = (cal) => {
         setTimeout(() => { contNum.innerText = '1'; }, 9000);
         setTimeout(() => { restartGame(); }, 9500);
         setTimeout(() => {
-            contNum.innerText = '0';
             document.getElementById('reGameScreen').style.display = 'none';
             contNum.innerText = '5';
         }, 9500)

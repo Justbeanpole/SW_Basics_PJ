@@ -109,14 +109,14 @@ const draw = async (num, who) => {
             playerVal.push(data.cards[0].value);
             sc[1].innerText = `${sum(playerVal)}`;
             let score = sum(playerVal);
-            newDiv.parentNode.className += ' rotateCard';
+            newDiv.parentNode.classList.toggle('rotateCard');
             return score;
         }
         else {
             newDiv.style.backgroundImage = `url(${data.cards[0].image})`;
             dealerVal.push(data.cards[0].value);
             let score = sum(dealerVal);
-            newDiv.parentNode.className += ' rotateCard';
+            newDiv.parentNode.classList.toggle('rotateCard');
             return score;
         }
     }
@@ -289,9 +289,6 @@ let CheckBlackjack = () => {
         return -1;
     }
     else {
-        document.getElementById('hit').disabled = "";
-        document.getElementById('stand').disabled = "";
-
     }
 }
 const rotCard = (num) => {
@@ -302,7 +299,7 @@ const rotCard = (num) => {
     }
     else {
         for (let i = 1; i < card.length; i++) {
-            card[i].className += ' rotateCard';
+            card[i].classList.toggle('rotateCard');
         }
     }
 }
@@ -313,6 +310,11 @@ let gamePlay = async () => {
     let cbj = await CheckBlackjack();
     console.log(cbj);
     await rotCard(cbj);
+    setTimeout(() => {
+        console.log("playerTurn")
+        document.getElementById('hit').disabled = "";
+        document.getElementById('stand').disabled = "";
+    }, 2000);
     sc[0].style.display = "inline";
     sc[1].style.display = "inline";
     let mat = matchResult(cbj);
@@ -365,11 +367,8 @@ const reGameScreen = (cal) => {
 //재시작 함수
 const restartGame = async () => {
     // 카드 이미지 초기화
-    for (let i = pCard.length - 1; i >= 0; i--) {
-        pCard[i].remove();
-    }
-    for (let j = dCard.length - 1; j >= 0; j--) {
-        dCard[j].remove();
+    for (let i = card.length - 1; i >= 0; i--) {
+        card[i].remove();
     }
     sc[0].style.display = "none";
     sc[1].style.display = "none";

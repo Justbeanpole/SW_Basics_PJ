@@ -14,23 +14,34 @@ const vts = document.getElementById('victory');
 const dts = document.getElementById('defeat');
 const bsts = document.getElementById('bustMsg');
 const tts = document.getElementById('tie');
+const scText = document.getElementById('screenText');
+const rgscreen = document.getElementById('reGameScreen');
+const contNum = document.getElementById('countNum');
 let dealerVal = [];
 let playerVal = [];
+let remain;
 //DECK 생성 함수
 const createDeck = async () => {
-    let response = await fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6');
-    let data = await response.json();
-    dId = data.deck_id;
-    console.log(dId);
-}
-//플레이어인지 딜러인지
-let convertWho = (who) => {
-    if (who == "dealer") {
-        return 0;
+    try {
+        let response = await fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6');
+        let data = await response.json();
+        dId = data.deck_id;
+        console.log(dId);
     }
-    else {
-        return 1;
+    catch {
+        scText.innerHTML = "[Error] API를 불러오는데 실패했습니다. <br/> 첫 화면으로 돌아갑니다."
+        setTimeout(() => { rgscreen.style.display = 'flex'; }, 2000)
+        setTimeout(() => { contNum.innerText = '4'; }, 3000);
+        setTimeout(() => { contNum.innerText = '3'; }, 4000);
+        setTimeout(() => { contNum.innerText = '2'; }, 5000);
+        setTimeout(() => { contNum.innerText = '1'; }, 6000);
+        setTimeout(() => {
+            document.getElementById('reGameScreen').style.display = 'none';
+            contNum.innerText = '5';
+            location.href = "../FirstPage/firstPage.html";
+        }, 6500);
     }
+
 }
 const madeDiv = (who) => {
     if (who == "dealer") {
@@ -85,41 +96,56 @@ const draw = async (num, who) => {
         newDiv = await madeDiv(who);
         k++;
     }
+    try {
+        let response = await fetch(url);
+        let data = await response.json();
+        remain = data.remaining;
+        if (num > 1) {
+            if (who == "player") {
+                for (let i = 0; i < pbCard.length; i++) {
+                    pbCard[i].style.backgroundImage = `url(${data.cards[i].image})`;
+                    playerVal.push(data.cards[i].value);
+                }
+                sc[1].innerText = `${sum(playerVal)}`
+            }
+            else {
+                for (let i = 0; i < dbCard.length; i++) {
+                    dbCard[i].style.backgroundImage = `url(${data.cards[i].image})`;
+                    dealerVal.push(data.cards[i].value);
+                }
+            }
+        }
+        else {
+            if (who == "player") {
+                newDiv.style.backgroundImage = `url(${data.cards[0].image})`;
+                playerVal.push(data.cards[0].value);
+                sc[1].innerText = `${sum(playerVal)}`;
+                let score = sum(playerVal);
+                newDiv.parentNode.classList.toggle('rotateCard');
+                return score;
+            }
+            else {
+                newDiv.style.backgroundImage = `url(${data.cards[0].image})`;
+                dealerVal.push(data.cards[0].value);
+                let score = sum(dealerVal);
+                newDiv.parentNode.classList.toggle('rotateCard');
+                return score;
+            }
+        }
+    } catch (error) {
+        scText.innerHTML = "[Error] API를 불러오는데 실패했습니다. <br/> 다시 시작합니다."
+        setTimeout(() => { rgscreen.style.display = 'flex'; }, 2000)
+        setTimeout(() => { contNum.innerText = '4'; }, 3000);
+        setTimeout(() => { contNum.innerText = '3'; }, 4000);
+        setTimeout(() => { contNum.innerText = '2'; }, 5000);
+        setTimeout(() => { contNum.innerText = '1'; }, 6000);
+        setTimeout(() => {
+            document.getElementById('reGameScreen').style.display = 'none';
+            contNum.innerText = '5';
+            restartGame();
+        }, 6500);
+    }
 
-    let response = await fetch(url);
-    let data = await response.json();
-    if (num > 1) {
-        if (who == "player") {
-            for (let i = 0; i < pbCard.length; i++) {
-                pbCard[i].style.backgroundImage = `url(${data.cards[i].image})`;
-                playerVal.push(data.cards[i].value);
-            }
-            sc[1].innerText = `${sum(playerVal)}`
-        }
-        else {
-            for (let i = 0; i < dbCard.length; i++) {
-                dbCard[i].style.backgroundImage = `url(${data.cards[i].image})`;
-                dealerVal.push(data.cards[i].value);
-            }
-        }
-    }
-    else {
-        if (who == "player") {
-            newDiv.style.backgroundImage = `url(${data.cards[0].image})`;
-            playerVal.push(data.cards[0].value);
-            sc[1].innerText = `${sum(playerVal)}`;
-            let score = sum(playerVal);
-            newDiv.parentNode.classList.toggle('rotateCard');
-            return score;
-        }
-        else {
-            newDiv.style.backgroundImage = `url(${data.cards[0].image})`;
-            dealerVal.push(data.cards[0].value);
-            let score = sum(dealerVal);
-            newDiv.parentNode.classList.toggle('rotateCard');
-            return score;
-        }
-    }
 }
 //BUST 함수
 const busted = (score, who) => {
@@ -228,19 +254,18 @@ let winD = () => {
 }
 //STAND 함수
 const stand = async () => {
-    card[0].className += ' rotateCard';
+    card[0].classList.toggle('rotateCard');
     hitBtn.disabled = "true";
     stdBtn.disabled = "true";
     sc[0].innerText = sum(dealerVal);
     while (sum(dealerVal) <= 16) {
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         await hit("dealer");
         sc[0].innerText = sum(dealerVal);
     }
-    let varWin;
     sc[0].innerText = sum(dealerVal);
     if (sum(dealerVal) <= 21) {
-        varWin = winD();
+        let varWin = winD();
         matchResult(varWin);
         calBet(varWin);
     }
@@ -306,9 +331,9 @@ const rotCard = (num) => {
 
 //GAMEPLAY 함수
 let gamePlay = async () => {
+    await reShuffle();
     await Promise.all([draw(2, "dealer"), draw(2, "player")]);
     let cbj = await CheckBlackjack();
-    console.log(cbj);
     await rotCard(cbj);
     setTimeout(() => {
         console.log("playerTurn")
@@ -332,22 +357,41 @@ const bustText = (who) => {
     }
 
 }
+const reShuffle = async() => {
+    if (remain < 10) {
+        try {
+            let response = await fetch(`https://www.deckofcardsapi.com/api/deck/${dId}/shuffle/`);
+            let data = await response.json();
+            console.log(data);
+        }
+        catch {
+            scText.innerHTML = "Shuffle API가 불러오지 않았습니다. <br> 다시 시도해보세요";
+            setTimeout(() => { rgscreen.style.display = 'flex'; }, 2000)
+            setTimeout(() => { contNum.innerText = '4'; }, 3000);
+            setTimeout(() => { contNum.innerText = '3'; }, 4000);
+            setTimeout(() => { contNum.innerText = '2'; }, 5000);
+            setTimeout(() => { contNum.innerText = '1'; }, 6000);
+            setTimeout(() => {
+                restartGame();
+                document.getElementById('reGameScreen').style.display = 'none';
+                contNum.innerText = '5';
+            }, 6500)
+        }
+    }
+}
+
 const reGameScreen = (cal) => {
-    const contNum = document.getElementById('countNum');
-    const scText = document.getElementById('screenText');
-    const rgscreen = document.getElementById('reGameScreen');
     if (cal <= 0) {
-        scText.innerHTML = "<div id ='screenText'>소지금을 다 잃으셨습니다. <br> 더 이상 배팅금이 없으므로 첫 화면으로 돌아갑니다. </div>"
+        scText.innerHTML = "소지금을 다 잃으셨습니다. <br> 더 이상 배팅금이 없으므로 첫 화면으로 돌아갑니다."
         setTimeout(() => { rgscreen.style.display = 'flex'; }, 5000)
         setTimeout(() => { contNum.innerText = '4'; }, 6000);
         setTimeout(() => { contNum.innerText = '3'; }, 7000);
         setTimeout(() => { contNum.innerText = '2'; }, 8000);
         setTimeout(() => { contNum.innerText = '1'; }, 9000);
         setTimeout(() => {
-            contNum.innerText = '0';
             document.getElementById('reGameScreen').style.display = 'none';
-            location.href = "../FirstPage/firstPage.html";
             contNum.innerText = '5';
+            location.href = "../FirstPage/firstPage.html";
         }, 9500);
     }
     else {
@@ -357,8 +401,8 @@ const reGameScreen = (cal) => {
         setTimeout(() => { contNum.innerText = '3'; }, 7000);
         setTimeout(() => { contNum.innerText = '2'; }, 8000);
         setTimeout(() => { contNum.innerText = '1'; }, 9000);
-        setTimeout(() => { restartGame(); }, 9500);
         setTimeout(() => {
+            restartGame();
             document.getElementById('reGameScreen').style.display = 'none';
             contNum.innerText = '5';
         }, 9500)

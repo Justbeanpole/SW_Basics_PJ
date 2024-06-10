@@ -29,58 +29,46 @@ const createDeck = async () => {
         console.log(dId);
     }
     catch {
-        scText.innerHTML = "[Error] API를 불러오는데 실패했습니다. <br/> 첫 화면으로 돌아갑니다."
-        setTimeout(() => { rgscreen.style.display = 'flex'; }, 2000)
-        setTimeout(() => { contNum.innerText = '4'; }, 3000);
-        setTimeout(() => { contNum.innerText = '3'; }, 4000);
-        setTimeout(() => { contNum.innerText = '2'; }, 5000);
-        setTimeout(() => { contNum.innerText = '1'; }, 6000);
-        setTimeout(() => {
-            document.getElementById('reGameScreen').style.display = 'none';
-            contNum.innerText = '5';
-            location.href = "../FirstPage/firstPage.html";
-        }, 6500);
+        scText.innerHTML = "[Error] API를 불러오는데 실패했습니다. <br> 첫 화면으로 돌아갑니다."
+        countDown(2000, "backFirstPage");
     }
-
 }
 const madeDiv = (who) => {
     if (who == "dealer") {
-        // 새로운 div 요소를 생성합니다.
+        // 새로운 div 요소 생성
         let newDiv = document.createElement("div");
         newDiv.className = "Card dealerCard";
 
-        // front div를 생성하고 내용물을 추가합니다.
+        // front div를 생성, 내용물 추가
         let frontDiv = document.createElement("div");
         frontDiv.className = "front";
 
-
-        // back div를 생성하고 내용물을 추가합니다.
+        // back div를 생성, 내용물 추가
         let backDiv = document.createElement("div");
         backDiv.className = "dealerback";
 
-
-        // front와 back div를 newDiv에 추가합니다.
+        // front와 back div를 newDiv에 추가
         newDiv.appendChild(frontDiv);
         newDiv.appendChild(backDiv);
         sc[0].before(newDiv);
         return backDiv;
     }
     else {
-        // 새로운 div 요소를 생성합니다.
+        // 새로운 div 요소 생성
         let newDiv = document.createElement("div");
         newDiv.className = "Card playerCard";
 
-        // front div를 생성하고 내용물을 추가합니다.
+        // front div를 생성, 내용물 추가
         let frontDiv = document.createElement("div");
         frontDiv.className = "front";
 
 
-        // back div를 생성하고 내용물을 추가합니다.
+        // back div를 생성, 내용물 추가
         let backDiv = document.createElement("div");
         backDiv.className = "playerback";
 
 
-        // front와 back div를 newDiv에 추가합니다.
+        // front와 back div를 newDiv에 추가
         newDiv.appendChild(frontDiv);
         newDiv.appendChild(backDiv);
         sc[1].before(newDiv);
@@ -134,16 +122,7 @@ const draw = async (num, who) => {
         }
     } catch (error) {
         scText.innerHTML = "[Error] API를 불러오는데 실패했습니다. <br/> 다시 시작합니다."
-        setTimeout(() => { rgscreen.style.display = 'flex'; }, 2000)
-        setTimeout(() => { contNum.innerText = '4'; }, 3000);
-        setTimeout(() => { contNum.innerText = '3'; }, 4000);
-        setTimeout(() => { contNum.innerText = '2'; }, 5000);
-        setTimeout(() => { contNum.innerText = '1'; }, 6000);
-        setTimeout(() => {
-            document.getElementById('reGameScreen').style.display = 'none';
-            contNum.innerText = '5';
-            restartGame();
-        }, 6500);
+        countDown(2000,"restart");
     }
 
 }
@@ -205,7 +184,8 @@ const calBet = (num) => {
             charge.style.display = "inline";
             mon.innerText = `${calWin}`;
         }, 2500);
-        reGameScreen();
+        scText.innerText = "게임을 재시작합니다."
+        countDown(5000, "restart");
     }
     else if (num == -1) {
         let calLose = parseInt(mon.innerText) - (betTotal);
@@ -215,10 +195,12 @@ const calBet = (num) => {
             charge.style.display = "inline";
             mon.innerText = `${calLose}`
         }, 2500)
-        reGameScreen(calLose);
+        scText.innerHTML = "소지금을 다 잃으셨습니다. <br> 더 이상 배팅금이 없으므로 첫 화면으로 돌아갑니다.";
+        countDown(5000, "defeat");
     }
     else if (num == 0) {
-        reGameScreen();
+        scText.innerText = "게임을 재시작합니다."
+        countDown(5000, "restart");
     }
     else {
         console.log('NOTHING BET');
@@ -250,7 +232,6 @@ let winD = () => {
             return -1;
         }
     }
-
 }
 //STAND 함수
 const stand = async () => {
@@ -319,7 +300,7 @@ let CheckBlackjack = () => {
 const rotCard = (num) => {
     if (num < 2) {
         for (let i = 0; i < card.length; i++) {
-            card[i].className += ' rotateCard';
+            card[i].classList.toggle('rotateCard');
         }
     }
     else {
@@ -355,9 +336,8 @@ const bustText = (who) => {
         bsts.style.top = '510px';
         bsts.style.display = "block";
     }
-
 }
-const reShuffle = async() => {
+const reShuffle = async () => {
     if (remain < 10) {
         try {
             let response = await fetch(`https://www.deckofcardsapi.com/api/deck/${dId}/shuffle/`);
@@ -366,46 +346,8 @@ const reShuffle = async() => {
         }
         catch {
             scText.innerHTML = "Shuffle API가 불러오지 않았습니다. <br> 다시 시도해보세요";
-            setTimeout(() => { rgscreen.style.display = 'flex'; }, 2000)
-            setTimeout(() => { contNum.innerText = '4'; }, 3000);
-            setTimeout(() => { contNum.innerText = '3'; }, 4000);
-            setTimeout(() => { contNum.innerText = '2'; }, 5000);
-            setTimeout(() => { contNum.innerText = '1'; }, 6000);
-            setTimeout(() => {
-                restartGame();
-                document.getElementById('reGameScreen').style.display = 'none';
-                contNum.innerText = '5';
-            }, 6500)
+            countDown(2000, "restart");
         }
-    }
-}
-
-const reGameScreen = (cal) => {
-    if (cal <= 0) {
-        scText.innerHTML = "소지금을 다 잃으셨습니다. <br> 더 이상 배팅금이 없으므로 첫 화면으로 돌아갑니다."
-        setTimeout(() => { rgscreen.style.display = 'flex'; }, 5000)
-        setTimeout(() => { contNum.innerText = '4'; }, 6000);
-        setTimeout(() => { contNum.innerText = '3'; }, 7000);
-        setTimeout(() => { contNum.innerText = '2'; }, 8000);
-        setTimeout(() => { contNum.innerText = '1'; }, 9000);
-        setTimeout(() => {
-            document.getElementById('reGameScreen').style.display = 'none';
-            contNum.innerText = '5';
-            location.href = "../FirstPage/firstPage.html";
-        }, 9500);
-    }
-    else {
-        scText.innerText = "게임을 재시작합니다."
-        setTimeout(() => { rgscreen.style.display = 'flex'; }, 5000)
-        setTimeout(() => { contNum.innerText = '4'; }, 6000);
-        setTimeout(() => { contNum.innerText = '3'; }, 7000);
-        setTimeout(() => { contNum.innerText = '2'; }, 8000);
-        setTimeout(() => { contNum.innerText = '1'; }, 9000);
-        setTimeout(() => {
-            restartGame();
-            document.getElementById('reGameScreen').style.display = 'none';
-            contNum.innerText = '5';
-        }, 9500)
     }
 }
 //재시작 함수
@@ -444,6 +386,24 @@ const restartGame = async () => {
     document.getElementById('playGuide').style.opacity = '100%';
     document.getElementById('hitGuide').style.opacity = '0%';
     document.getElementById('standGuide').style.opacity = '0%';
+}
+
+const countDown = (delay, type) => {
+    setTimeout(() => { rgscreen.style.display = 'flex'; }, delay)
+    setTimeout(() => { contNum.innerText = '4'; }, delay+1000);
+    setTimeout(() => { contNum.innerText = '3'; }, delay+2000);
+    setTimeout(() => { contNum.innerText = '2'; }, delay+3000);
+    setTimeout(() => { contNum.innerText = '1'; }, delay+4000);
+    setTimeout(() => {
+        if(type == "restart"){
+            restartGame();
+        }
+        else{
+            location.href = "../FirstPage/firstPage.html";
+        }
+        document.getElementById('reGameScreen').style.display = 'none';
+        contNum.innerText = '5';
+    }, delay+4500)
 }
 
 //DECK 생성

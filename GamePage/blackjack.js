@@ -405,7 +405,7 @@ const countDown = (delay, type) => {
             restartGame();
         }
         else {
-            location.href = "../FirstPage/index.html";
+            location.href = "../index.html";
         }
         document.getElementById('reGameScreen').style.display = 'none';
         contNum.innerText = '5';

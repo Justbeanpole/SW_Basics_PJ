@@ -15,5 +15,5 @@ window.onclick = function(event) {
 }
 
 off.addEventListener('click', ()=>{
-  location.href = '../FirstPage/index.html'
+  location.href = '../index.html'
 })

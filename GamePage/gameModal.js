@@ -4,7 +4,7 @@ const off = document.getElementById('off');
 
 //모달 열기
 mbtn.addEventListener('click', ()=>{
-    modal.style.display = "flex";
+  modal.style.display = "flex";
 })
 
 //모달 닫기

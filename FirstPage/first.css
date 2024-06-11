@@ -1,30 +1,36 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap');
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&display=swap');
+
 * {
     user-select: none;
 }
-body{
+
+body {
     margin: 0;
     padding: 0;
 }
-#container{
+
+#container {
     height: 100vh;
     display: flex;
     flex-direction: column;
     text-align: center;
     background-color: rgb(5, 45, 35);
 }
-#top{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50%;
-  font-family: Jaro;
-  font-size: 110px;
-  color: white;
-  letter-spacing: 3px;
+
+#top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    font-family: Jaro;
+    font-size: 110px;
+    color: white;
+    letter-spacing: 3px;
 }
-#infotext{
+
+#infotext {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,16 +38,19 @@ body{
     color: white;
     font-size: 20px;
 }
-#bottom{
+
+#bottom {
     display: flex;
     flex-direction: column;
 }
-#selectornum{
+
+#selectornum {
     display: flex;
     justify-content: center;
     height: 50px;
 }
-button{
+
+button {
     background-color: rgb(5, 45, 35);
     width: 50px;
     height: 50px;
@@ -52,19 +61,22 @@ button{
     border-radius: 50px;
     color: white;
     border: 1px solid white;
-    transition: all 0.2s ;
+    transition: all 0.2s;
     box-shadow: 0px 5px 0px 0px white;
 }
-button:hover{
+
+button:hover {
     margin-top: 10px;
     margin-bottom: 5px;
     box-shadow: 0px 0px 0px 0px;
 }
-button:active{
+
+button:active {
     background-color: white;
     color: rgb(5, 45, 35);
 }
-#num{
+
+#num {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -75,7 +87,8 @@ button:active{
     color: white;
     margin-top: 7px;
 }
-#playbutton{
+
+#playbutton {
     position: relative;
     top: 60px;
     width: 300px;
@@ -84,13 +97,147 @@ button:active{
     font-family: Jaro;
     font-size: 40px;
 }
-#guide{
+
+#guide {
     position: fixed;
     bottom: 4%;
     left: 2%;
     font-size: 35px;
     box-shadow: none;
 }
-#guide:hover{
+
+#guide:hover {
     margin: 0;
+}
+
+#title {
+    animation-name: bounce-in-top;
+    animation-duration: 2s;
+}
+
+@keyframes bounce-in-top {
+    0% {
+        transform: translateY(-500px);
+        transform: translateY(-500px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+        opacity: 0
+    }
+
+    38% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+        opacity: 1
+    }
+
+    55% {
+        -webkit-transform: translateY(-65px);
+        transform: translateY(-65px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in
+    }
+
+    72% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out
+    }
+
+    81% {
+        -webkit-transform: translateY(-28px);
+        transform: translateY(-28px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in
+    }
+
+    90% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out
+    }
+
+    95% {
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out
+    }
+}
+
+.heart {
+    font-family: 'Material Icons';
+    color: red;
+    font-size: 300px;
+    position: fixed;
+    top: 20%;
+    left: 42.2%;
+    opacity: 0;
+}
+
+.purse {
+    animation: purseAni 0.8s linear forwards;
+}
+
+@keyframes purseAni {
+    30% {
+        opacity: 0.5;
+        transform: scale(1.2);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    70% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    80% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    90% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.alertMsg {
+    font-family: 'Black Han Sans';
+    position: absolute;
+    bottom: 50%;
+    font-size: 30px;
+    display: none;
+}
+
+.alertMsgAct {
+    animation: text-blur-out;
+    animation-delay: 0.4s;
+    animation-duration: 1s;
+    animation-timing-function: easeInQuad;
+}
+
+@keyframes text-blur-out {
+    0% {
+        -webkit-filter: blur(.01);
+        filter: blur(.01)
+    }
+    100% {
+        -webkit-filter: blur(12px) opacity(0);
+        filter: blur(12px) opacity(0)
+    }
 }

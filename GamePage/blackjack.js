@@ -122,7 +122,7 @@ const draw = async (num, who) => {
         }
     } catch (error) {
         scText.innerHTML = "[Error] API를 불러오는데 실패했습니다. <br/> 다시 시작합니다."
-        countDown(2000,"restart");
+        countDown(2000, "restart");
     }
 
 }
@@ -195,8 +195,14 @@ const calBet = (num) => {
             charge.style.display = "inline";
             mon.innerText = `${calLose}`
         }, 2500)
-        scText.innerHTML = "소지금을 다 잃으셨습니다. <br> 더 이상 배팅금이 없으므로 첫 화면으로 돌아갑니다.";
-        countDown(5000, "defeat");
+        if (calLose <= 0) {
+            scText.innerHTML = "소지금을 다 잃으셨습니다. <br> 더 이상 배팅금이 없으므로 첫 화면으로 돌아갑니다.";
+            countDown(5000, "defeat");
+        }
+        else {
+            scText.innerText = "게임을 재시작합니다."
+            countDown(5000, "restart");
+        }
     }
     else if (num == 0) {
         scText.innerText = "게임을 재시작합니다."
@@ -390,20 +396,20 @@ const restartGame = async () => {
 
 const countDown = (delay, type) => {
     setTimeout(() => { rgscreen.style.display = 'flex'; }, delay)
-    setTimeout(() => { contNum.innerText = '4'; }, delay+1000);
-    setTimeout(() => { contNum.innerText = '3'; }, delay+2000);
-    setTimeout(() => { contNum.innerText = '2'; }, delay+3000);
-    setTimeout(() => { contNum.innerText = '1'; }, delay+4000);
+    setTimeout(() => { contNum.innerText = '4'; }, delay + 1000);
+    setTimeout(() => { contNum.innerText = '3'; }, delay + 2000);
+    setTimeout(() => { contNum.innerText = '2'; }, delay + 3000);
+    setTimeout(() => { contNum.innerText = '1'; }, delay + 4000);
     setTimeout(() => {
-        if(type == "restart"){
+        if (type == "restart") {
             restartGame();
         }
-        else{
+        else {
             location.href = "../FirstPage/firstPage.html";
         }
         document.getElementById('reGameScreen').style.display = 'none';
         contNum.innerText = '5';
-    }, delay+4500)
+    }, delay + 4500)
 }
 
 //DECK 생성
@@ -411,6 +417,12 @@ createDeck();
 //PLAY버튼 이벤트
 play.addEventListener('click', () => {
     if (chipT.innerText != "0000") { guideEdit(); gamePlay(); }
+    else {
+        document.querySelector('.textPlay').classList.add('unableStart')
+        setTimeout(() => {
+            document.querySelector('.textPlay').classList.remove('unableStart');
+        }, 1000);
+    }
 });
 //HIT, STAND 이벤트
 hitBtn.addEventListener('click', () => { hit("player"); });

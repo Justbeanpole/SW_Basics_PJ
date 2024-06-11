@@ -7,15 +7,16 @@
     <title>Black Jack</title>
     <link rel="stylesheet" href="first.css">
     <link rel="stylesheet" href="menu.css">
-    <link rel="stylesheet" href="title.css">
     <link rel="stylesheet" href="modal.css">
     <link rel="icon" href="../fa32.png" type="image/x-icon">
 </head>
 
 <body>
     <div id="container">
+        <div class="heart">favorite</div>
         <div id="top">
             <h1 id="title">BlackJack</h1>
+            <div class="alertMsg">시작 금액은 2000 ~ 10000 입니다.</div>
         </div>
         <div id="buttom">
             <div id="infotext"><span>Money</span></div>
@@ -29,21 +30,22 @@
                 <input type="checkbox" id="toggle" />
                 <label id="show-menu" for="toggle">
                     <div class="btn">
-                        <i class="material-icons md-36 toggleBtn menuBtn">menu</i>
-                        <i class="material-icons md-36 toggleBtn closeBtn">close</i>
+                        <i class="toggleBtn menuBtn">menu</i>
+                        <i class="toggleBtn closeBtn">close</i>
                     </div>
                     <div class="btn">
-                        <i class="material-icons md-36" id="share">share</i>
+                        <i id="share">share</i>
                     </div>
                     <div class="btn">
-                        <i class="material-icons md-36" id="openModalBtn">book</i>
+                        <i id="openModalBtn">book</i>
                     </div>
                     <div class="btn">
-                        <i class="material-icons md-36" id="favorite" >favorite</i>
+                        <i id="favorite" >favorite</i>
                     </div>
                 </label>
             </div>
         </div>
+        
     </div>
     <div id="myModal" class="modal">
         <!-- BOX -->
@@ -106,7 +108,7 @@
                             <button class="varchip one">100</button>
                             <button class="varchip three">300</button>
                             <button class="varchip five">500</button>
-                            <button class="varchip all">ALL IN</button>
+                            <button class="varchip all">ALL</button>
                         </div>
                         <div class="gameExpl">
                             원하는 칩 선택 후 PLAY를 눌러 게임을 시작한다. <br>
@@ -117,7 +119,7 @@
                         </div>
                         <div class="gameExpl">
                             당신의 소지금이 0 이하가 된다면 패배한다. <br>
-                            그 전에 종료를 원한다면 좌측 상단의 버튼을 이용해 종료합니다.
+                            종료를 원한다면 좌측 상단의 버튼을 이용하세요.
                         </div>
                     </div>
                 </div>

@@ -49,7 +49,7 @@ btr.addEventListener('click', btnleft);
 btl.addEventListener('click', btnright);
 gm.addEventListener('click', () => {
     sessionStorage.setItem('money', cash.innerText);
-    location.href = '../GamePage/game.html';
+    location.href = './GamePage/game.html';
 })
 btnShare.addEventListener('click', clip)
 btnFavorite.addEventListener('click', () => {

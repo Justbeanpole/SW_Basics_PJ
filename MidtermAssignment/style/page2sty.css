@@ -1,0 +1,154 @@
+@font-face {
+    font-family: 'hello';
+    src: url(DancingScript-VariableFont_wght.ttf);
+  }
+  @font-face {
+    font-family: 'hi';
+    src: url(NanumBrushScript-Regular.ttf);
+  }
+  body {
+    margin: 0;
+  }
+  .container {
+    display: flex;
+    height: 100vh;
+    position: relative;
+  }
+  .box1 {
+    background-color: #b692a1;
+    width: 70%;
+    display: flex;
+    justify-content: stretch;
+  }
+  .box2 {
+    background-color: #798e7b;
+    width: 20%;
+    display: flex;
+  }
+  .box3 {
+    background-color: #bfccd8;
+    width: 10%;
+    display: flex;
+  }
+  .imgbox {
+    width: 45%;
+    height: auto;
+    overflow: hidden;
+  }
+  .imgbox > img {
+    width: 100%;
+    height: auto;
+    margin-top: 20%;
+    object-fit: fill;
+  }
+  .letters {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    font-family: hello;
+  }
+  .topic {
+    text-align: center;
+    font-size: 100px;
+    margin-top: 100px;
+  }
+  .content {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 50px;
+    font-family: hi;
+  }
+  .imgbox_nextpage {
+    width: 100%;
+    overflow: hidden;
+  }
+  .thumnail {
+    width: 100%;
+    object-fit: cover;
+    margin-top: 350px;
+  }
+  .thumnail1 {
+    margin-top: 500px;
+  }
+  .buttonbox
+  {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
+  button {
+    font-family: hello;
+    background-color: #b692a1;
+    border-width: 1px;
+    border-radius: 10rem;
+    padding: 15px 50px;
+    font-size: 20px;
+  }
+  button:hover
+  {
+    color:white;
+    background-color: black;
+  }
+  .underbar
+  {
+    position: absolute;
+    align-self: flex-end;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  .underbar>a
+  {
+    text-decoration: none;
+    color: black;
+    font-family: hello;
+    font-size: large;
+  }
+  a:hover{
+    color: gray;
+  }
+  .menu{
+    background-color: black;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    color: white;
+    padding: 10px 30px;
+    font-size: 20px;
+    border-radius: 10rem;
+    font-family: hello;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .menu:hover{
+    background-color: #e49366;
+    border: none;
+  }
+  .menu input[type=checkbox]{
+    display: none;
+  }
+  .menu input[type=checkbox]+label{
+    background-repeat: no-repeat;
+  }
+  .menu input[type=checkbox]+label>span{
+    font-weight: bold;
+  }
+  .menu .menuitems{
+    width: 50px;
+  }
+  .menu .menuitems{
+    padding: 0;
+  }
+  .menu .menuitems li{
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  .menu .menuitems li a{
+    text-decoration: none;
+    color: white;
+  }
+  .menu input[type=checkbox]:checked~.menuitems{
+    display: none;
+  }
